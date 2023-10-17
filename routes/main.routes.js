@@ -1,14 +1,19 @@
 'use strict';
 
 const router = require('express').Router();
-const prefix = '';
+const auth = require('../middleware/auth');
+const prefix = '/logs';
 
 const controller = require('../controllers/main.controller');
+const applicationController = require('../controllers/application.controller');
 
-router.get(`${prefix}/`, controller.all);
-router.post(`${prefix}/`, controller.create);
-router.get(`${prefix}/:id`, controller.info);
-router.put(`${prefix}/:id`, controller.update);
-router.delete(`${prefix}/:id`, controller.delete);
+router.post(`/applications`, applicationController.create);
+
+router.use(auth)
+	.get(`${prefix}/`, controller.all)
+	.post(`${prefix}/`, controller.create)
+	.get(`${prefix}/:id`, controller.info)
+	.put(`${prefix}/:id`, controller.update)
+	.delete(`${prefix}/:id`, controller.delete)
 
 module.exports = router;
