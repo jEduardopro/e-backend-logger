@@ -29,8 +29,9 @@ class MainController {
 		res.json({ message: 'Example request.' });
 	}
 
-	delete(req, res, next) {
-		res.json({ message: 'Example request.' });
+	async delete(req, res, next) {
+		await logService.destroy(req.params.id);
+		res.json({ message: 'Log deleted.' });
 	}
 }
 

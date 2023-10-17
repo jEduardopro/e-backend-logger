@@ -17,6 +17,10 @@ class LogService {
 		return log;
 	}
 
+	async destroy(id) {
+		await Log.findByIdAndDelete(id);
+	}
+
 }
 
 module.exports = new LogService();
