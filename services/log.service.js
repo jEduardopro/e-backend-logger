@@ -17,6 +17,13 @@ class LogService {
 		return log;
 	}
 
+	async update(id, data) {
+		const log = await Log.findByIdAndUpdate(id, {
+			$set: data,
+		}, { new: true })
+		return log;
+	}
+
 	async destroy(id) {
 		await Log.findByIdAndDelete(id);
 	}
