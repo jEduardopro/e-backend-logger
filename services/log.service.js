@@ -12,6 +12,11 @@ class LogService {
 		return log;
 	}
 
+	async find(id) {
+		const log = await Log.findById(id);
+		return log;
+	}
+
 }
 
 module.exports = new LogService();

@@ -20,8 +20,9 @@ class MainController {
 		res.json({ message: 'Log created.', log });
 	}
 
-	info(req, res, next) {
-		res.json({ message: 'Example request.' });
+	async info(req, res, next) {
+		const log = await logService.find(req.params.id);
+		res.json(log);
 	}
 
 	update(req, res, next) {
