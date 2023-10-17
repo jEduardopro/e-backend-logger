@@ -5,8 +5,9 @@ const logService = require('../services/log.service');
 
 class MainController {
 
-	all(req, res, next) {
-		res.json({ message: 'Example request.' });
+	async all(req, res, next) {
+		const logs = await logService.getLogs(req.application_id);
+		res.json({ data: logs });
 	}
 
 	async create(req, res, next) {
